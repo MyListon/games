@@ -4,12 +4,18 @@ import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_produtos")
@@ -19,10 +25,19 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(length = 100)
+	@NotBlank(message = "O nome é obrigatório!")
+	@Size(min = 5, max = 100, message = "O atributo nome deve conter no mínimo 02 e no máximo 100 caracteres")
 	private String nome;
 	
+	@Column(length = 1000)
+	@NotNull(message = "O preço é obrigatório!")
+	@PositiveOrZero(message = "O atributo preço deve ser maior ou igual a zero")
 	private BigDecimal preco;
 	
+	@Column(length = 100)
+	@NotNull(message = "A quantidade é obrigatória!")
+	@Min(value = 0, message = "A quantidade deve ser maior ou igual a zero")
 	private Integer quantidade;
 	
 	@ManyToOne
