@@ -81,12 +81,9 @@ Categoria "1" -- "0..*" Produto : classifica
  
 ## 4. Diagrama Entidade-Relacionamento (DER)
  
-<br />
- 
 O DER (Diagrama Entidade-Relacionamento) representa como os dados estão estruturados e interligados no banco de dados relacional (MySQL).
  
-<br />
- 
+
 ```mermaid
 erDiagram
     tb_categorias ||--o{ tb_produtos : classifica
@@ -103,8 +100,7 @@ erDiagram
         bigint categoria_id FK
     }
 ```
- 
-<br />
+
  
 ## 5. Tecnologias utilizadas
  
