@@ -89,13 +89,13 @@ erDiagram
     tb_categorias ||--o{ tb_produtos : classifica
     tb_categorias {
         bigint id PK
-        varchar(255) nome
-        varchar(255) descricao
+        varchar nome
+        varchar descricao
     }
     tb_produtos {
         bigint id PK
-        varchar(255) nome
-        decimal(10,2) preco
+        varchar nome
+        decimal preco
         int quantidade
         bigint categoria_id FK
     }
