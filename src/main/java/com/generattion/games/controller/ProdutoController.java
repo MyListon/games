@@ -1,5 +1,6 @@
 package com.generattion.games.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -93,5 +94,17 @@ public class ProdutoController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         
         produtoRepository.deleteById(id);                
+    }
+    
+ // Desafio 1: Buscar produtos maiores que valor X, em ordem crescente
+    @GetMapping("/maiorque/{preco}")
+    public ResponseEntity<List<Produto>> getProdutosMaiorQue(@PathVariable BigDecimal preco) {
+        return ResponseEntity.ok(produtoRepository.findByPrecoGreaterThanOrderByPrecoAsc(preco));
+    }
+
+    // Desafio 2: Buscar produtos menores que valor X, em ordem decrescente
+    @GetMapping("/menorque/{preco}")
+    public ResponseEntity<List<Produto>> getProdutosMenorQue(@PathVariable BigDecimal preco) {
+        return ResponseEntity.ok(produtoRepository.findByPrecoLessThanOrderByPrecoDesc(preco));
     }
 }
