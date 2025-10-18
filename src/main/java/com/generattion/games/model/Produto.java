@@ -2,6 +2,8 @@ package com.generattion.games.model;
 
 import java.math.BigDecimal;
 
+import org.hibernate.validator.constraints.URL;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
@@ -39,6 +41,11 @@ public class Produto {
 	@NotNull(message = "A quantidade é obrigatória!")
 	@Min(value = 0, message = "A quantidade deve ser maior ou igual a zero")
 	private Integer quantidade;
+	
+	@NotBlank(message = "A URL da imagem é obrigatória!")
+	@URL(message = "O formato da URL da imagem é inválido!")
+	@Column(length = 5000)
+	private String urlImagem;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("produtos")
@@ -83,7 +90,13 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
-	
+
+	public String getUrlImagem() {
+		return urlImagem;
+	}
+
+	public void setUrlImagem(String urlImagem) {
+		this.urlImagem = urlImagem;
+	}
 	
 }
